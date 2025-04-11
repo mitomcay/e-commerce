@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Category</title>
+    <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,900" />
+    <!-- Nucleo Icons -->
+    <link href="/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <!-- Material Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <!-- CSS Files -->
+    <link id="pagestyle" href="/css/material-dashboard.css?v=3.2.0" rel="stylesheet" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .upload-box {
+            width: 100%;
+            max-width: 600px;
+            padding: 30px;
+            border: 2px dashed #007bff;
+            text-align: center;
+            display: flex;
+            cursor: pointer;
+            margin: 20px auto;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            
+        }
+        .upload-box:hover {
+            background-color: #e9ecef;
+        }
+        .preview {
+            margin-top: 15px;
+        }
+        .preview img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        input[type="file"] {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="justify-content-center d-flex">
+        <a href="/" class="btn btn-outline-dark bg-gradient-dark">Home Page</a>
+        <a href="/admin" class="btn btn-outline-dark bg-gradient-dark">Admin Page</a>
+        <a href="/profile" class="btn btn-outline-dark bg-gradient-dark">Profile Page</a>
+    </div>
+    
+    <div class="container mt-5">
+        <div class="card shadow-lg p-4">
+            <h2 class="text-center text-primary mb-4">Create Product</h2>
+            <form action="/createCategory" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                  <label class="form-label">Category Name</label>
+                  <input type="text" class="form-control shadow-dark" name="categoryname" id="category-name" required>
+                </div>
+              
+                <div class="mb-3 upload-box" id="drop-area">
+                    <p>Kéo và thả hình ảnh vào đây hoặc <label for="ImageUrl" style="color: blue; cursor: pointer;">chọn tệp</label></p>
+                    <input type="file" name="ImageUrl" id="ImageUrl" accept="image/*" class="form-control shadow-dark justify-content-center" required>
+                    <div class="preview" id="preview"></div>
+                </div>
+              
+                <button type="submit" class="btn btn-success">Create Category</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/core/popper.min.js"></script>
+    <script src="/js/core/bootstrap.min.js"></script>
+    <script src="/js/plugins/jquery-3.7.1.min.js"></script>
+    <script src="/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="/js/plugins/smooth-scrollbar.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            let dropArea = $("#drop-area");
+            let fileInput = $("#ImageUrl")[0];
+            let preview = $("#preview");
+
+            // Ngăn chặn hành vi mặc định
+            dropArea.on("dragenter dragover", function (e) {
+                e.preventDefault();
+                dropArea.css("background-color", "#e0e0e0");
+            });
+
+            dropArea.on("dragleave", function () {
+                dropArea.css("background-color", "#f8f9fa");
+            });
+
+            dropArea.on("drop", function (e) {
+                e.preventDefault();
+                dropArea.css("background-color", "#f8f9fa");
+                let files = e.originalEvent.dataTransfer.files;
+                let dataTransfer = new DataTransfer();
+                $.each(files, function (i, file) {
+                    dataTransfer.items.add(file);
+                });
+
+                fileInput.files = dataTransfer.files;
+                handleFiles(files);
+            });
+
+            // Xử lý khi chọn file từ input
+            fileInput.on("change", function () {
+                handleFiles(this.files);
+            });
+
+            // Xử lý hiển thị ảnh xem trước
+            function handleFiles(files) {
+                preview.empty();
+                $.each(files, function (index, file) {
+                    if (file.type.startsWith("image/")) {
+                        let reader = new FileReader();
+                        reader.onload = function (e) {
+                            preview.append(`<img src="${e.target.result}" alt="Uploaded Image" class="img-fluid mt-3">`);
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        alert("Vui lòng chọn file ảnh hợp lệ!");
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

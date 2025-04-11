@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Order</title>
+
+    <link href="/css/style.css" rel="stylesheet">
+    <style>
+        .loading-spinner {
+            width: 100px;
+            height: 100px;
+            border: 6px solid #f3f3f3; /* Màu nền */
+            border-top: 6px solid #3498db; /* Màu của phần quay */
+            border-radius: 50%;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <p id="apptransid" data-apptransid="<%= apptransid %>"></p>
+    <div class="justify-content-around card d-flex">
+        <a href="/" class="btn btn-primary border-radius">Home</a>
+        <h1 class="text-center mb-2">Check Order</h1>
+    </div>
+    
+    <div style="margin: 50px 0%; height: 500px; padding: 10px 0%;" class="card">
+        <div id="checkout-page" style="margin-top: 100px;">
+
+        </div>
+        <div id="result"></div>
+        
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        $(document).ready(function (){
+            const app_trans_id = $('#apptransid').data('apptransid');
+            // console.log(app_trans_id);
+            checkloop(app_trans_id);
+        });
+
+        function checkloop (app_trans_id) {
+            $.ajax({
+                url: `/check/${app_trans_id}`,
+                method: 'POST',
+                success: function (response) {
+                    console.log(response.response.return_code);
+                    if(response.response.return_code === 3){
+                        $('#checkout-page').html('<div class="loading-spinner">Đang xử lý thanh toán...</div>');
+                        setTimeout(() => {
+                            checkloop(app_trans_id);
+                        }, 5000);
+                    }else{
+                        $('#result').html(`<div class="text-center">${response.response.return_message}</div>`);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    $('#result').html(`Error: ${error}`);
+                }
+            });
+        }
+
+        
+    </script>
+</body>
+</html>

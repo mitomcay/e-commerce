@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #chatbot-icon {
+            position: fixed;
+            bottom: 100px;  /* Vị trí cách đáy màn hình */
+            right: 20px;   /* Vị trí cách phải màn hình */
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        #formchat {
+            position: fixed;
+            bottom: 100px;  /* Vị trí cách đáy màn hình */
+            right: 20px;   /* Vị trí cách phải màn hình */
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        #chatbot-icon img {
+            width: 50px;  /* Kích thước icon */
+            height: 50px;
+        }
+    </style>
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <script src="/js/core/bootstrap.min.js"></script>
+</head>
+<body>
+    <div id="chatbot-icon">
+        <img src="/uploads/chatbot-icon.png" style="border-radius: 12px;" alt="Chatbot">
+    </div>
+    <div id="formchat" style="display: none; border-radius: 12px; background-color: white; width: 300px; position: fixed; bottom: 20px; right: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 10px;">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5>Chat</h5>
+            <div class="d-flex">
+                <button onclick="closeformchat()" class="btn btn-outline-dark" >-</button>
+                <button onclick="$('#formchat').toggle();" class="btn btn-outline-dark" >X</button>
+            </div>
+            
+        </div>
+        <div id="messageArea" style="max-height: 200px; overflow-y: auto; margin-bottom: 10px;">
+            <!-- Tin nhắn sẽ hiển thị ở đây -->
+        </div>
+        <div class="d-flex">
+            <input type="text" id="message" class="form-control me-2" placeholder="Type a message...">
+            <button class="btn btn-outline-dark" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#message').keydown(function(event) {
+                if (event.key === "Enter" && !event.shiftKey) { 
+                    event.preventDefault(); // Ngăn form gửi mặc định khi nhấn Enter
+                    sendMessage(); // Gọi hàm gửi tin nhắn
+                }
+            });
+        });
+
+        $('#chatbot-icon').click( () => {
+            $('#formchat').toggle();
+            $('#chatbot-icon').toggle();
+        });
+
+        function closeformchat() {
+            $('#formchat').toggle();
+            $('#chatbot-icon').toggle();
+        }
+
+        const sendMessage = () => {
+            let userMessage = $('#message').val(); // Lưu giá trị trước khi reset
+
+            $('#messageArea').append(`<p style="font-size: 16px; margin-bottom: 5px;">You: ${userMessage}</p>`);
+            $('#message').val(''); // Reset sau khi lưu
+
+            $('#messageArea').scrollTop($('#messageArea')[0].scrollHeight);
+            $.ajax({
+                url: 'http://localhost:5000/api/chatbot',
+                type: 'POST',
+                contentType: 'application/json', 
+                data: JSON.stringify({ message: userMessage }), // Key "message" phải khớp với backend
+                success: async function(response) {
+                    let botMessage = response.message || "Không tìm thấy sản phẩm nào.";
+                    let html = `<p style="font-size: 16px; margin-bottom: 5px;">Chat Bot: ${botMessage}</p>`;
+                    if(response.link){
+                        html += `<a href="${response.link}" target="_blank">Xem thêm</a>`;
+                    }
+                    $('#messageArea').append(html);
+                    await searchproduct(response.link);
+                    $('#messageArea').scrollTop($('#messageArea')[0].scrollHeight);
+                },
+                error: function(error) {
+                    console.error("Lỗi khi gửi tin nhắn:", error);
+                    $('#messageArea').append(`<p style="font-size: 16px; margin-bottom: 5px;">Chat Bot: Lỗi server.</p>`);
+                }
+            });
+        };
+
+        const searchproduct = async (link) => {
+            $.ajax({
+                url: '/api/search/product',
+                type: 'POST',
+                contentType: 'application/json', 
+                data: JSON.stringify({ message: link }), 
+                success: function(response) {
+                    let html = '';
+
+                    if (response.data && response.data.products && response.data.products.length > 0) {
+                        const firstProduct = response.data.products[0]; // Lấy sản phẩm đầu tiên
+                        html += `
+                            <div class="d-flex flex-wrap justify-content-between">
+                                Bạn có muốn xem sản phẩm: 
+                                <a href="/chatbot-search?keywords=${encodeURIComponent(firstProduct.productName)}&page=1">
+                                    ${firstProduct.productName}
+                                </a>
+                            </div>
+                        `;
+                    } else {
+                        html += `
+                            <div class="d-flex flex-wrap justify-content-between">
+                                Bạn có muốn tìm kiếm: 
+                                <a href="/chatbot-search?keywords=${encodeURIComponent(name)}&page=1">
+                                    ${name}
+                                </a>
+                            </div>
+                        `;
+                    }
+
+                    $('#messageArea').append(html);
+                    $('#messageArea').scrollTop($('#messageArea')[0].scrollHeight);
+                },
+                error: function(error) {
+                    console.error("Lỗi khi gửi tin nhắn:", error);
+                    $('#messageArea').append(
+                        `
+                        <!-- <p style="font-size: 16px; margin-bottom: 5px;">Chat Bot: Không thể tìm thấy sản phẩm</p> -->
+                        <div class="d-flex flex-wrap justify-content-between">
+                            Bạn có muốn tìm kiếm: 
+                            <a href="/chatbot-search?keywords=${encodeURIComponent(name)}&page=1">
+                                ${name}
+                            </a>
+                        </div>
+                        `
+                    );
+                    $('#messageArea').scrollTop($('#messageArea')[0].scrollHeight);
+                }
+            });
+        };
+
+
+    </script>
+    <script>
+        let chatbotIcon = document.getElementById('chatbot-icon');
+        let formChat = document.getElementById('formchat');
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        chatbotIcon.addEventListener('mousedown', function(e) {
+            isDragging = true;
+            offsetX = e.clientX - chatbotIcon.getBoundingClientRect().left;
+            offsetY = e.clientY - chatbotIcon.getBoundingClientRect().top;
+        });
+
+        document.addEventListener('mousemove', function(e) {
+        if (isDragging) {
+            chatbotIcon.style.left = (e.clientX - offsetX) + 'px';
+            chatbotIcon.style.top = (e.clientY - offsetY) + 'px';
+        }
+        });
+
+        document.addEventListener('mouseup', function() {
+            isDragging = false;
+        });
+
+        chatbotIcon.addEventListener('click', function() {
+            chatbotIcon.style.display = 'none';
+            formChat.style.display = 'block';
+        });
+
+    </script>
+</body>
+</html>
