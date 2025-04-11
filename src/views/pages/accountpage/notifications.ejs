@@ -22,127 +22,8 @@
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
-  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-radius-lg fixed-start ms-2  bg-white my-2" id="sidenav-main">
-    <div class="sidenav-header">
-      <i class="fas fa-times p-3 cursor-pointer text-dark opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand px-4 py-3 m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard " target="_blank">
-        <img src="/img/logo-ct-dark.png" class="navbar-brand-img" width="26" height="26" alt="main_logo">
-        <span class="ms-1 text-sm text-dark">Creative Tim</span>
-      </a>
-    </div>
-    <hr class="horizontal dark mt-0 mb-2">
-    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
-      <ul class="navbar-nav">
-        <% if( user?.Role == 'Admin'){%>
-          <li class="nav-item">
-            <a class="nav-link text-dark" href="/admin">
-              <i class="material-symbols-rounded opacity-5">dashboard</i>
-              <span class="nav-link-text ms-1">Dashboard - Income</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark" href="/manager/notification">
-              <i class="material-symbols-rounded opacity-5">notifications</i>
-              <span class="nav-link-text ms-1">Manager Notifications</span>
-            </a>
-        </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark" href="/manager/account">
-              <i class="material-symbols-rounded opacity-5">person_add</i>
-              <span class="nav-link-text ms-1">User Services</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark" href="/categoryServices">
-              <i class="material-symbols-rounded opacity-5">demography</i>
-              <span class="nav-link-text ms-1">Category Services</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark" href="/productServices">
-              <i class="material-symbols-rounded opacity-5">shopping_bag</i>
-              <span class="nav-link-text ms-1">Products Services</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark" href="/orderAdmin">
-              <i class="material-symbols-rounded opacity-5">shopping_cart</i>
-              <span class="nav-link-text ms-1">Manager Order</span>
-            </a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link text-dark" href="/manager/event">
-                <i class="material-symbols-rounded opacity-5">shopping_cart</i>
-                <span class="nav-link-text ms-1">Manager Events</span>
-              </a>
-            </li>
-          <li class="nav-item">
-              <a class="nav-link text-dark" href="/manager/comment">
-                <i class="material-symbols-rounded opacity-5">comment</i>
-                <span class="nav-link-text ms-1">Manager Comment</span>
-              </a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link text-dark" href="/extendtool">
-                  <i class="material-symbols-rounded opacity-5">format_textdirection_r_to_l</i>
-                  <span class="nav-link-text ms-1">Extend tool</span>
-              </a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link text-dark" href="/manager/payment">
-                  <i class="material-symbols-rounded opacity-5">format_textdirection_r_to_l</i>
-                  <span class="nav-link-text ms-1">Manager Payment</span>
-              </a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link text-dark" href="/report/finance">
-                  <i class="material-symbols-rounded opacity-5">format_textdirection_r_to_l</i>
-                  <span class="nav-link-text ms-1">Report Finance</span>
-              </a>
-          </li>
-        <% } %>
-        <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs text-dark font-weight-bolder opacity-5">Account pages</h6>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active bg-gradient-dark text-white" href="/notification">
-            <i class="material-symbols-rounded opacity-5">notifications</i>
-            <span class="nav-link-text ms-1">Notifications</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="/profile">
-            <i class="material-symbols-rounded opacity-5">person</i>
-            <span class="nav-link-text ms-1">Profile</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="/messagepage" target="_blank">
-            <i class="material-symbols-rounded opacity-5">tooltip</i>
-            <span class="nav-link-text ms-1">Message</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="/receipt">
-            <i class="material-symbols-rounded opacity-5">credit_card_gear</i>
-            <span class="nav-link-text ms-1">Billing</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="/order">
-            <i class="material-symbols-rounded opacity-5">shopping_cart</i>
-            <span class="nav-link-text ms-1">Order</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active bg-gradient-dark text-white" href="/logout">
-            <i class="material-symbols-rounded opacity-5">lock</i>
-            <span class="nav-link-text ms-1">Logout</span>
-          </a>
-        </li>     
-      </ul>
-    </div>
-  </aside>
+  <%- include('./sidebar.ejs') %>
+  
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
     <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-3 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
@@ -263,54 +144,7 @@
               <h5 class="mb-0">Alerts</h5>
             </div>
             <div class="card-body p-3 pb-0" id="alert">
-              <!-- <div class="alert alert-primary alert-dismissible text-white" role="alert">
-                <span class="text-sm">A simple primary alert with <a href="javascript:;" class="alert-link text-white">an example link</a>. Give it a click if you like.</span>
-                <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="alert alert-secondary alert-dismissible text-white" role="alert">
-                <span class="text-sm">A simple secondary alert with <a href="javascript:;" class="alert-link text-white">an example link</a>. Give it a click if you like.</span>
-                <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="alert alert-success alert-dismissible text-white" role="alert">
-                <span class="text-sm">A simple success alert with <a href="javascript:;" class="alert-link text-white">an example link</a>. Give it a click if you like.</span>
-                <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="alert alert-danger alert-dismissible text-white" role="alert">
-                <span class="text-sm">A simple danger alert with <a href="javascript:;" class="alert-link text-white">an example link</a>. Give it a click if you like.</span>
-                <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="alert alert-warning alert-dismissible text-white" role="alert">
-                <span class="text-sm">A simple warning alert with <a href="javascript:;" class="alert-link text-white">an example link</a>. Give it a click if you like.</span>
-                <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="alert alert-info alert-dismissible text-white" role="alert">
-                <span class="text-sm">A simple info alert with <a href="javascript:;" class="alert-link text-white">an example link</a>. Give it a click if you like.</span>
-                <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="alert alert-light alert-dismissible text-white" role="alert">
-                <span class="text-sm">A simple light alert with <a href="javascript:;" class="alert-link text-white">an example link</a>. Give it a click if you like.</span>
-                <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="alert alert-dark alert-dismissible text-white" role="alert">
-                <span class="text-sm">A simple dark alert with <a href="javascript:;" class="alert-link text-white">an example link</a>. Give it a click if you like.</span>
-                <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div> -->
+              <!-- Alerts will be inserted here -->
             </div>
           </div>
           <div class="card mt-4">
@@ -465,23 +299,9 @@
       </div>
     </div>
   </div>
-  <!--   Core JS Files   -->
-  <script src="/js/core/popper.min.js"></script>
-  <script src="/js/core/bootstrap.min.js"></script>
+
+  <!-- Page-specific scripts -->
   <script src="/js/plugins/jquery-3.7.1.min.js"></script>
-  <script src="/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="/js/plugins/smooth-scrollbar.min.js"></script>
-  <script>
-    var win = navigator.platform.indexOf('Win') > -1;
-    if (win && document.querySelector('#sidenav-scrollbar')) {
-      var options = {
-        damping: '0.5'
-      }
-      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-    }
-  </script>
-  <!-- socket.io -->
-  <script src="/socket.io/socket.io.js"></script>
   <script>
     $(document).ready(() => {
       const socket = io("http://localhost:3000");
@@ -508,10 +328,5 @@
     });
   </script>
   <script src="/js/MaterialUIConfigurator.js"></script>
-  <!-- Github buttons -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="/js/material-dashboard.min.js?v=3.2.0"></script>
 </body>
-
 </html>

@@ -1,209 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
-  <title>
-    Sign Up
-  </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign Up</title>
   <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,900" />
-  <!-- Nucleo Icons -->
-  <link href="/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- Font Awesome Icons -->
-  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-  <!-- Material Icons -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
-  <!-- CSS Files -->
-  <link id="pagestyle" href="/css/material-dashboard.css?v=3.2.0" rel="stylesheet" />
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      background-image: url('https://images.unsplash.com/photo-1497294815431-9365093b7331?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    body::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: -1;
+    }
+    .signup-container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+    .password-toggle {
+      cursor: pointer;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      background: transparent;
+      border: none;
+    }
+    .form-control {
+      padding: 10px 15px;
+    }
+  </style>
 </head>
 
-<body class="">
-  <div class="container position-sticky z-index-sticky top-0">
-    <div class="row">
-      <div class="col-12">
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg blur border-radius-lg top-0 z-index-3 shadow position-absolute mt-4 py-2 start-0 end-0 mx-4">
-          <div class="container-fluid ps-2 pe-0">
-            <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="/">
-              Home Page
-            </a>
-            <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon mt-2">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-              </span>
-            </button>
-            <div class="collapse navbar-collapse" id="navigation">
-              <ul class="navbar-nav mx-auto">
-                <li class="nav-item">
-                  <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href="/">
-                    <i class="fa fa-chart-pie opacity-6 text-dark me-1"></i>
-                    shop
-                  </a>
-                </li>
-                <!--
-                <li class="nav-item">
-                  <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href="/admin">
-                    <i class="fa fa-chart-pie opacity-6 text-dark me-1"></i>
-                    Dashboard
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link me-2" href="/profile">
-                    <i class="fa fa-user opacity-6 text-dark me-1"></i>
-                    Profile
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link me-2" href="/register">
-                    <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
-                    Sign Up
-                  </a>
-                </li>
-                -->
-                <li class="nav-item">
-                  <a class="nav-link me-2" href="/login">
-                    <i class="fas fa-key opacity-6 text-dark me-1"></i>
-                    Sign In
-                  </a>
-                </li>
-                
-              </ul>
-            </div>
-          </div>
-        </nav>
-        <!-- End Navbar -->
-      </div>
+<body>
+  <div class="container py-3">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <a href="/" class="btn btn-outline-light">
+        <i class="fas fa-home me-2"></i>Home
+      </a>
+      <a href="/login" class="btn btn-outline-light">
+        <i class="fas fa-sign-in-alt me-2"></i>Sign In
+      </a>
     </div>
-  </div>
-  <main class="main-content  mt-0">
-    <section>
-      <div class="page-header min-vh-100">
-        <div class="container">
-          <div class="row">
-            <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
-              <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url('/img/illustrations/illustration-signup.jpg'); background-size: cover;">
-              </div>
+
+    <div class="signup-container">
+      <h2 class="text-center mb-4">Create Your Account</h2>
+      
+      <% if (message) { %>
+        <div class="alert alert-danger text-center mb-4">
+          <%= message %>
+        </div>
+      <% } %>
+
+      <form action="/register" method="post">
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-control" name="firstname" placeholder="First name" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-control" name="lastname" placeholder="Last name" required>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Date of Birth</label>
+          <input type="date" class="form-control" name="birthdate" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Gender</label>
+          <div class="d-flex gap-3">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gender" id="male" value="Male" required>
+              <label class="form-check-label" for="male">Male</label>
             </div>
-            <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5">
-              <div class="card card-plain">
-                <div class="card-header">
-                  <h4 class="font-weight-bolder">Sign Up</h4>
-                  <p class="mb-0">Enter your email and password to register</p>
-                </div>
-                <div class="card-body">
-                  <form action="/register" method="post" class="p-1 border rounded ">
-                    <div class="mb-4">
-                      <label for="firstname" class="form-label">Firstname:</label>
-                      <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter your firstname" required>
-                    </div>
-                    <div class="mb-4">
-                      <label for="lastname" class="form-label">Lastname:</label>
-                      <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter your lastname" required>
-                    </div>
-                    <div class="mb-4">
-                      <label for="birthdate" class="form-label">Date of Birth:</label>
-                      <input type="date" class="form-control" id="birthdate" name="birthdate" required>
-                    </div>
-                    <div class="mb-4">
-                      <label for="gender" class="form-label">Gender:</label><br>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="male" name="gender" value="Male" required>
-                        <label class="form-check-label" for="male">Male</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="female" name="gender" value="Female" required>
-                        <label class="form-check-label" for="female">Female</label>
-                      </div>
-                    </div>
-                    <div class="mb-4">
-                      <label for="phone" class="form-label">Phone number:</label>
-                      <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your phone number" required>
-                    </div>
-                    <div class="mb-4">
-                      <label for="address" class="form-label">Address:</label>
-                      <div class="row g-2">
-                        <div class="col-md-4">
-                          <label for="province" class="form-label">City</label>
-                          <select name="province" id="province" class="form-select">
-                            
-                          </select>
-                        </div>
-                        <div class="col-md-4">
-                          <label for="district" class="form-label">District</label>
-                          <select name="district" id="district" class="form-select">
-                            
-                          </select>
-                        </div>
-                        <div class="col-md-4">
-                          <label for="ward" class="form-label">Ward</label>
-                          <select name="ward" id="ward" class="form-select">
-                            
-                          </select>
-                        </div>
-                        
-                        
-                      </div>
-                    </div>
-                    <div class="mb-4">
-                      <label for="email" class="form-label">Email:</label>
-                      <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
-                    </div>
-                    <div class="mb-4">
-                      <label for="password" class="form-label">
-                        Password:
-                        <button id="lookpassword" type="button" style="border: none; background-color: white;">
-                          <i id="togglePassword" class="fas fa-eye"></i>
-                        </button>
-                      </label>
-                      <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
-                    </div>
-                    <div class="mb-4">
-                      <label for="confirmPassword" class="form-label">
-                        Confirm Password:
-                        <button id="lookconfirmpassword" type="button" style="border: none; background-color: white;">
-                          <i id="toggleConfirmPassword" class="fas fa-eye"></i>
-                        </button>
-                      </label>
-                      <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Re-enter your password" required>
-                    </div>
-                    <div class="mb-4 form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
-                      <label class="form-check-label" for="flexCheckDefault">
-                        I agree to the <a href="javascript:;" class="text-primary text-decoration-none">Terms and Conditions</a>
-                      </label>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100" id="btn-register" disabled>Register</button>
-                  </form>
-                </div>
-                <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                  <p class="mb-2 text-sm mx-auto">
-                    Already have an account?
-                    <a href="/login" class="text-primary text-gradient font-weight-bold">Sign in</a>
-                  </p>
-                </div>
-              </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gender" id="female" value="Female">
+              <label class="form-check-label" for="female">Female</label>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-  </main>
-  <!--   Core JS Files   -->
-  <script src="/js/core/popper.min.js"></script>
-  <script src="/js/core/bootstrap.min.js"></script>
-  <script src="/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="/js/plugins/smooth-scrollbar.min.js"></script>
-  <script src="/js/plugins/jquery-3.7.1.min.js"></script>
+
+        <div class="mb-3">
+          <label class="form-label">Phone Number</label>
+          <input type="tel" class="form-control" name="phone" placeholder="Phone number" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Address</label>
+          <div class="row g-2">
+            <div class="col-md-4">
+              <label class="form-label">City</label>
+              <select name="province" id="province" class="form-select" required>
+                <option value="">Select City</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">District</label>
+              <select name="district" id="district" class="form-select" required>
+                <option value="">Select District</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Ward</label>
+              <select name="ward" id="ward" class="form-select" required>
+                <option value="">Select Ward</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" name="email" placeholder="Email address" required>
+        </div>
+
+        <div class="mb-3 position-relative">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+          <button type="button" class="password-toggle" id="togglePassword">
+            <i class="fas fa-eye"></i>
+          </button>
+        </div>
+
+        <div class="mb-3 position-relative">
+          <label class="form-label">Confirm Password</label>
+          <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm password" required>
+          <button type="button" class="password-toggle" id="toggleConfirmPassword">
+            <i class="fas fa-eye"></i>
+          </button>
+        </div>
+
+        <div class="mb-4 form-check">
+          <input class="form-check-input" type="checkbox" id="termsCheck" required>
+          <label class="form-check-label" for="termsCheck">
+            I agree to the <a href="#" class="text-decoration-none">Terms and Conditions</a>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 py-2" id="btn-register">
+          Register
+        </button>
+
+        <div class="text-center mt-3">
+          Already have an account? <a href="/login" class="text-decoration-none">Sign In</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- jQuery and Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
   <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
+      // Address selection
       const provinceSelect = $('#province');
       const districtSelect = $('#district');
       const wardSelect = $('#ward');
@@ -211,117 +183,65 @@
       $.ajax({
         url: 'https://provinces.open-api.vn/api/?depth=1',
         type: 'GET',
-        success: function (response) {
+        success: function(response) {
           response.forEach(city => {
             provinceSelect.append(`<option value="${city.code}">${city.name}</option>`);
           });
         }
-      })
+      });
 
-      provinceSelect.change(function () {
+      provinceSelect.change(function() {
         const provincecode = $(this).val();
-        console.log(provincecode)
-        districtSelect.html('<option value="">Select District</option>'); // Reset district
+        districtSelect.html('<option value="">Select District</option>');
         wardSelect.html('<option value="">Select Ward</option>');
-        if(provincecode){
+        
+        if(provincecode) {
           $.ajax({
             url: `https://provinces.open-api.vn/api/p/${provincecode}?depth=2`,
             type: 'GET',
-            success: function (response) {
+            success: function(response) {
               response.districts.forEach(district => {
                 districtSelect.append(`<option value="${district.code}">${district.name}</option>`);
               });
             }
-          })
+          });
         }
       });
 
-      districtSelect.change(function () {
+      districtSelect.change(function() {
         const districtcode = $(this).val();
         wardSelect.html('<option value="">Select Ward</option>');
 
-        if(districtcode){
+        if(districtcode) {
           $.ajax({
             url: `https://provinces.open-api.vn/api/d/${districtcode}?depth=2`,
             type: 'GET',
-            success: function (response) {
+            success: function(response) {
               response.wards.forEach(ward => {
                 wardSelect.append(`<option value="${ward.code}">${ward.name}</option>`);
               });
             }
-          })
+          });
         }
       });
-    });
 
-    var win = navigator.platform.indexOf('Win') > -1;
-    if (win && document.querySelector('#sidenav-scrollbar')) {
-      var options = {
-        damping: '0.5'
-      }
-      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-    }
+      // Password toggle
+      $('#togglePassword').click(function() {
+        const password = $('#password');
+        const icon = $(this).find('i');
+        const type = password.attr('type') === 'password' ? 'text' : 'password';
+        password.attr('type', type);
+        icon.toggleClass('fa-eye fa-eye-slash');
+      });
 
-    $('#password, #confirmPassword').on('input', () => {
-      // Check if passwords match
-      if($('#password').val() !== $('#confirmPassword').val()){
-        $('#btn-register').prop('disabled', true);
-      } else {
-        // Check if all required fields are filled
-        if ($('#email').val() && $('#password').val() && $('#confirmPassword').val() && 
-            $('#phone').val() && $('#birthdate').val() && $('#lastname').val() && 
-            $('#firstname').val() && $('#flexCheckDefault').prop('checked')) {
-          $('#btn-register').prop('disabled', false);
-        } else {
-          $('#btn-register').prop('disabled', true);
-        }
-      }
-    });
-
-    $('#email, #phone, #birthdate, #lastname, #firstname, #flexCheckDefault').on('input', () => {
-      if ($('#email').val() && $('#password').val() && $('#confirmPassword').val() && 
-          $('#phone').val() && $('#birthdate').val() && $('#lastname').val() && 
-          $('#firstname').val() && $('#flexCheckDefault').prop('checked') && 
-          $('#password').val() === $('#confirmPassword').val()) {
-        $('#btn-register').prop('disabled', false);
-      } else {
-        $('#btn-register').prop('disabled', true);
-      }
-    });
-
-    $('#lookpassword').click(function() {
-      var password = $('#password');
-      var togglePassword = $('#lookpassword');
-      if (password.attr('type') === 'password') {
-        password.attr('type', 'text');
-        togglePassword.removeClass("fa-eye"); 
-        togglePassword.addClass("fa-eye-slash");
-      } else {
-        password.attr('type', 'password'); 
-        togglePassword.removeClass("fa-eye-slash");
-        togglePassword.addClass("fa-eye");
-      }
-    });
-
-    $('#lookconfirmpassword').click(function() {
-      var password = $('#confirmPassword');
-      var togglePassword = $('#lookconfirmpassword'); 
-      if (password.attr('type') === 'password') {
-        password.attr('type', 'text'); 
-        togglePassword.removeClass("fa-eye"); 
-        togglePassword.addClass("fa-eye-slash"); 
-      } else {
-        password.attr('type', 'password'); 
-        togglePassword.removeClass("fa-eye-slash");
-        togglePassword.addClass("fa-eye"); 
-      }
+      $('#toggleConfirmPassword').click(function() {
+        const password = $('#confirmPassword');
+        const icon = $(this).find('i');
+        const type = password.attr('type') === 'password' ? 'text' : 'password';
+        password.attr('type', type);
+        icon.toggleClass('fa-eye fa-eye-slash');
+      });
     });
   </script>
-  
-  <!-- Github buttons -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="/js/material-dashboard.min.js?v=3.2.0"></script>
 </body>
-
 </html>

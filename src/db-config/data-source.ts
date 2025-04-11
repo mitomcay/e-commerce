@@ -24,7 +24,7 @@ export const AppDataSource = new DataSource({
     password: process.env.MYSQL_PASS,
     database: process.env.MYSQL_NAME,
     synchronize: false,
-    logging: true,
+    logging: false,
     entities: [User,Product,Category,Cart,Like,Comment,OrderItem,CartItem,PaymentAccount,Message,Notification],
     subscribers: [],
     migrations: ["src/migrations/*.ts"],
