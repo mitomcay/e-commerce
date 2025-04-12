@@ -52,7 +52,7 @@ class cartservices{
                 });
                 req.session.save(); 
             }
-            return res.status(200).json({ message: 'Your choose product added your cart successfully'})
+            return res.status(200).json({ message: 'Your chosen product has been added to your cart successfully'})
 
         } catch (error){
             console.error('Error adding product to cart:', error);
@@ -82,7 +82,7 @@ class cartservices{
             const existingProduct = req.session.cart.find((item: any) => item.id === productId);
 
             if(existingProduct) {
-                return res.status(200).json({ message: 'Your choose product existed in your cart'});
+                return res.status(200).json({ message: 'Your chosen product already exist in your cart'});
             }
             else{
                 
@@ -101,7 +101,7 @@ class cartservices{
                 }); 
                 req.session.save(); 
             }
-            return res.status(200).json({ message: 'Your choose product added your cart successfully'});
+            return res.status(200).json({ message: 'Your chosen product has been added to your cart successfully'});
 
         }
         catch(e){

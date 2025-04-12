@@ -5,6 +5,7 @@ import { Message } from '@entitiesMessage';
 import { User } from '@entities/User';
 import dotenv from "dotenv";
 dotenv.config();
+console.log("OPENAI_API_KEY:", process.env.OPENAI_API_KEY);
 import bodyParser from "body-parser";
 import "reflect-metadata";
 import { AppDataSource } from "@config/data-source";
@@ -12,7 +13,6 @@ import session from 'express-session';
 import path from 'path';
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import { config } from "dotenv";
 import { Configuration, OpenAIApi } from "openai";
 import { initSocket } from "./sockets/notification.socket";
 
@@ -99,7 +99,7 @@ app.use(notificationroutes);
 app.use("/api/payment", Paymentroutes);
 
 // chatbot ------------------------------------------------------------------------------------------------------------
-/* const configuration = new Configuration({
+const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY, // Lưu ý: Đừng hardcode API Key vào code
 });
 
@@ -133,7 +133,7 @@ app.post('/api/chatbot', async (req: Request, res: Response): Promise<any> => {
     }
     
   }
-});*/
+});
 
 
 

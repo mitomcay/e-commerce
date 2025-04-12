@@ -56,7 +56,7 @@ class wishlistservices{
                 where: { product: { id: product.id }, user: { id: req.session._user.id } }
             })
             if(existwishlist){
-                return res.status(200).json({ message: 'Your choose product existed in your wishlist'});
+                return res.status(200).json({ message: 'Your chosen product already exist in your wishlist'});
             }
 
             const wishlist = new Like();
@@ -65,7 +65,7 @@ class wishlistservices{
 
             await AppDataSource.getRepository(Like).save(wishlist);
 
-            return res.status(200).json({ message: 'Your choose product added your wishlist successfully'})
+            return res.status(200).json({ message: 'Your chosen product has been added to your wishlist successfully'})
 
         } catch (error){
             console.error('Error adding product to cart:', error);
